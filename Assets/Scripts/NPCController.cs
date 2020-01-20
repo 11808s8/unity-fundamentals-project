@@ -44,13 +44,22 @@ public class NPCController : MonoBehaviour
 
     void Tick()
     {
-        agent.destination = waypoints[index].position;
-        agent.speed = agentSpeed / 2;
-
-        if (player != null && Vector3.Distance(player.position, transform.position) < aggroRange)
+        if (waypoints.Length > 0)
         {
-            agent.destination = player.position;
-            agent.speed = agentSpeed;
+            agent.destination = waypoints[index].position;
+            agent.speed = agentSpeed / 2;
+
+            if (player != null && Vector3.Distance(player.position, transform.position) < aggroRange)
+            {
+                agent.destination = player.position;
+                agent.speed = agentSpeed;
+            }
         }
+        
     }
+
+    /*void Update()
+    {
+        anim.SetFloat("Speed", agent.velocity.magnitude);
+    }*/
 }
