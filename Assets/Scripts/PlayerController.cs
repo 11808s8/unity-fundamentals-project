@@ -5,14 +5,18 @@ using UnityEngine.AI;
 
 public class PlayerController : MonoBehaviour
 {
-    //private Animator anim;
+    private Animator anim;
     private NavMeshAgent agent;
 
     // Start is called before the first frame update
     void Awake()
     {
-        //  anim = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
         agent= GetComponent<NavMeshAgent>();
     }
     
+    void Update()
+    {
+        anim.SetFloat("Speed", agent.velocity.magnitude);
+    }
 }
